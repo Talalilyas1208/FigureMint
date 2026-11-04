@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     description: "Accurate fee schedules and net profit calculations for online sellers and freelancers.",
   },
   icons: { icon: "/icon.svg", apple: "/icon.svg" },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "XpEkjxiaQnTZQKMhrXKwcFTJOoXX2mcE8cpgnfZZEpE",
+  },
 };
 
 export default function RootLayout({
