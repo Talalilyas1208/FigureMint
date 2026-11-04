@@ -1,0 +1,77 @@
+/* Icon navigation: desktop links, active states & mobile tile drawer */
+.nav-link { gap: 7px; }
+.nav-link .anticon { font-size: 15px; color: var(--text-muted); }
+.nav-link:hover .anticon { color: var(--color-primary); }
+
+.nav-link-active,
+.nav-link-active:hover {
+  background-color: var(--bg-section);
+  color: var(--color-primary);
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+.nav-link-active .anticon { color: var(--color-primary); }
+
+/* Keep all 6 links on one row between 980px and 1219px */
+@media (min-width: 980px) and (max-width: 1219px) {
+  .nav-link { padding: 8px 8px; font-size: 0.88rem; gap: 5px; }
+  .search-label-desktop,
+  .kbd-chip { display: none; }
+}
+
+.mobile-drawer {
+  border-top: 1px solid var(--border-warm);
+  background-color: var(--bg-page);
+  padding: 14px 16px 18px;
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
+}
+
+.mobile-drawer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+@media (min-width: 520px) {
+  .mobile-drawer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.drawer-tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--tap-target-min);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-warm);
+  background-color: var(--bg-card);
+  color: var(--text-heading);
+  text-decoration: none;
+}
+.drawer-tile:hover { border-color: var(--color-primary); }
+
+.drawer-tile-active {
+  border-color: var(--color-primary);
+  background-color: var(--bg-section);
+}
+
+.drawer-tile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background-color: var(--bg-section);
+  color: var(--color-primary);
+  font-size: 18px;
+}
+.drawer-tile-active .drawer-tile-icon {
+  background-color: var(--color-primary);
+  color: var(--bg-card);
+}
+
+.drawer-tile-label { display: block; font-weight: 700; font-size: 0.95rem; }
+.drawer-tile-hint { display: block; font-size: 0.8rem; color: var(--text-muted); }
+

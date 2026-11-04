@@ -1,0 +1,134 @@
+/* Responsive Mobile-First Calculator & Table Ergonomics */
+html, body {
+  overflow-x: hidden;
+}
+
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+.brand-anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-heading);
+  font-weight: 800;
+  font-size: 1.14rem;
+  letter-spacing: -0.02em;
+  min-height: var(--tap-target-min);
+}
+.brand-anchor:hover { color: var(--text-heading); }
+
+.brand-monogram {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background-color: var(--color-primary);
+  color: #FAFAF7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-label-desktop,
+.kbd-chip { display: none; }
+
+@media (min-width: 640px) {
+  .search-label-desktop { display: inline; }
+}
+
+@media (min-width: 980px) {
+  .kbd-chip {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--bg-section);
+    border: 1px solid var(--border-warm);
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+}
+
+/* Mobile-First KPI Cards: 2-up + full-width highlight on phones, 3-up on >=640px */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.kpi-card {
+  border-radius: 12px;
+  padding: 13px 14px;
+  border: 1px solid var(--border-warm);
+  background: var(--bg-section);
+}
+.kpi-card-primary {
+  background: var(--bg-primary-soft);
+  border-color: var(--border-primary-soft);
+}
+.kpi-card-accent {
+  grid-column: 1 / -1;
+  background: var(--bg-amber-badge);
+  border-color: var(--border-amber-soft);
+}
+@media (min-width: 640px) {
+  .kpi-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .kpi-card-accent { grid-column: auto; }
+}
+
+.kpi-caption { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+.kpi-value { font-size: clamp(1.22rem, 4vw, 1.48rem); font-weight: 800; color: var(--text-heading); line-height: 1.25; margin-top: 2px; }
+
+/* Breakdown Bar: Stacks on narrow phones, side-by-side on >=480px */
+.breakdown-box {
+  background-color: var(--bg-section);
+  border: 1px solid var(--border-warm);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: center;
+}
+@media (min-width: 480px) {
+  .breakdown-box { grid-template-columns: 1fr auto; gap: 16px; }
+}
+
+.breakdown-track {
+  display: flex;
+  height: 13px;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: var(--border-warm);
+  margin-bottom: 10px;
+}
+
+.calc-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.calc-actions > :first-child { grid-column: 1 / -1; }
+
+@media (min-width: 600px) {
+  .calc-actions { display: flex; flex-wrap: wrap; }
+  .calc-actions > :first-child { flex: 1; }
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+.table-scroll .data-table { min-width: 480px; }

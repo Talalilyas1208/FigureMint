@@ -1,0 +1,130 @@
+/* Reusable Atomic Component Primitives (shadcn/ui + Ant Design Harmony) */
+.ui-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-warm);
+  border-radius: var(--radius-card);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+}
+
+.ui-card-hover:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--tap-target-min);
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 0.96rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.ui-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.ui-btn-primary { background-color: var(--color-primary); color: var(--text-on-primary); }
+.ui-btn-primary:hover:not(:disabled) { background-color: var(--color-primary-hover); color: var(--text-on-primary); }
+
+.ui-btn-secondary {
+  background-color: var(--bg-card);
+  border-color: var(--border-warm-strong);
+  color: var(--text-heading);
+}
+.ui-btn-secondary:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background-color: var(--bg-primary-soft);
+  color: var(--text-heading);
+}
+
+.ui-btn-amber {
+  background-color: var(--bg-amber-badge);
+  border-color: var(--border-amber-soft);
+  color: var(--text-amber-badge);
+}
+.ui-btn-ghost {
+  background-color: transparent;
+  color: var(--text-body);
+  min-height: 44px;
+  padding: 8px 12px;
+}
+.ui-btn-ghost:hover:not(:disabled) { background-color: var(--bg-section); color: var(--color-primary); }
+.ui-btn-icon { width: var(--tap-target-min); padding: 0; }
+
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.77rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.ui-badge-emerald { background: var(--bg-primary-soft); border: 1px solid var(--border-primary-soft); color: var(--text-primary-deep); }
+.ui-badge-amber { background: var(--bg-amber-badge); border: 1px solid var(--border-amber-soft); color: var(--text-amber-badge); }
+.ui-badge-stone { background: var(--bg-section); border: 1px solid var(--border-warm); color: var(--text-muted); }
+
+.ui-field { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.ui-label { font-size: 0.92rem; font-weight: 600; color: var(--text-heading); display: flex; justify-content: space-between; align-items: center; }
+.ui-input-wrap {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-target-min);
+  border-radius: 10px;
+  border: 1px solid var(--border-warm-strong);
+  background-color: var(--bg-card);
+  padding-inline: 12px;
+  gap: 8px;
+}
+.ui-input-wrap:focus-within { border-color: var(--color-primary); box-shadow: 0 0 0 2px var(--bg-primary-soft); }
+.ui-input-el {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-heading);
+  font-size: 1rem;
+  outline: none;
+  min-height: 44px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background-color: var(--backdrop-warm);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12px 12px 20px;
+}
+@media (min-width: 640px) {
+  .modal-backdrop { padding: 8vh 16px 24px; }
+}
+.modal-panel {
+  width: 100%;
+  max-width: 640px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-warm-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-dialog);
+  overflow: hidden;
+}
+
+.prose-shell { max-width: 780px; }
+.prose-shell h2 { margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid var(--border-warm); }
+.data-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border: 1px solid var(--border-warm); border-radius: 12px; overflow: hidden; }
+.data-table th, .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-warm); text-align: left; font-size: 0.94rem; }
+.data-table th { background: var(--bg-section); color: var(--text-heading); font-weight: 700; }
+
