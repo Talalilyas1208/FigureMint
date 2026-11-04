@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { CheckSquareOutlined, CloudUploadOutlined, CopyOutlined, ShareAltOutlined, StarFilled, StarOutlined } from "@ant-design/icons";
 import { getEngineBySlug } from "@/lib/calcEngine";
 import { fetchMarginAdvisor } from "@/lib/calcEngine/advisorApi";
+import { calculateViaApi } from "@/lib/calcEngine/calculateApi";
 import { copyToClipboard } from "@/lib/utils/clipboard";
 import { useUrlScenario } from "@/hooks/useUrlScenario";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -24,6 +25,19 @@ export function PlatformCalculator({ slug, title }: { slug: string; title: strin
   const [statusMsg, setStatusMsg] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
   const [checking, setChecking] = useState(false);
+  const [apiSynced, setApiSynced] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    const t = setTimeout(async () => {
+      const resp = await calculateViaApi(slug, values);
+      if (active && resp?.ok) setApiSynced(true);
+    }, 250);
+    return () => {
+      active = false;
+      clearTimeout(t);
+    };
+  }, [slug, values]);
 
   if (!engine) return null;
   const result = engine.compute(values);
@@ -74,7 +88,7 @@ export function PlatformCalculator({ slug, title }: { slug: string; title: strin
   return (
     <AppCard padding="lg">
       <div className="calc-card-head">
-        <AppBadge tone="emerald">{lastSavedRef ? `Cloud Ref #${lastSavedRef}` : "Interactive Calculator"}</AppBadge>
+        <AppBadge tone="emerald">{lastSavedRef ? `Cloud Ref #${lastSavedRef}` : apiSynced ? "Dynamic API • 2026 Engine" : "Interactive Calculator"}</AppBadge>
         <AppButton variant="ghost" onClick={() => dispatch(toggleBookmark(slug))} leftIcon={isSaved ? <StarFilled style={{ color: "var(--color-amber)" }} /> : <StarOutlined />}>
           {isSaved ? "Saved" : "Save"}
         </AppButton>

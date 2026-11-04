@@ -6,6 +6,7 @@ import {
 import {
   getCalculators,
   getHealth,
+  postCalculate,
   postContact,
   postScenario,
 } from "../controllers/figureController.ts";
@@ -16,6 +17,8 @@ export const v1Router = Router();
 v1Router.get("/health", getHealth);
 
 v1Router.get("/calculators", rateLimitMiddleware(60, 60_000), getCalculators);
+
+v1Router.post("/calculate", rateLimitMiddleware(120, 60_000), postCalculate);
 
 v1Router.post(
   "/scenarios",

@@ -25,7 +25,7 @@ export type CalcFieldDef =
 
 export type CalcValues = Record<string, number | string>;
 
-interface CalcComputedResult {
+export interface CalcComputedResult {
   grossAmount: number;
   productCostTotal: number;
   feeAmount: number;
@@ -37,6 +37,8 @@ interface CalcComputedResult {
   secondaryValue: string;
   summaryText: string;
 }
+
+export type CalcResult = CalcComputedResult;
 
 export interface PlatformEngineConfig {
   slug: string;
