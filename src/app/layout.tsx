@@ -13,7 +13,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.vercel.app"),
   title: {
     default: "FigureMint — 2026 Seller, Creator & Freelance Net Profit Calculators",
     template: "%s | FigureMint",
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     "stripe vs paypal fees",
     "freelance rate calculator",
   ],
-  authors: [{ name: "FigureMint Editorial Team", url: "https://figuremint.com/about" }],
+  authors: [{ name: "FigureMint Editorial Team", url: "https://figuremint.vercel.app/about" }],
   publisher: "FigureMint",
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://figuremint.com",
+    url: "https://figuremint.vercel.app",
     siteName: "FigureMint",
     title: "FigureMint — 2026 Seller, Creator & Freelance Net Profit Calculators",
     description: "Audit true net margin after marketplace referral, affiliate, processing & ad fees.",

@@ -3,7 +3,7 @@ import { CALCULATORS } from "@/data/calculators";
 import { SEO_CATEGORY_HUBS } from "@/data/seoCategories";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.vercel.app";
   const lastModified = new Date("2026-11-03");
 
   const corePages: MetadataRoute.Sitemap = [

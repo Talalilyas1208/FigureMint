@@ -9,7 +9,7 @@ import { AppCard } from "@/components/ui/AppCard";
 import { AdSlot } from "@/components/ads/AdSlot";
 
 export function CategoryHubView({ hub }: { hub: SeoCategoryHub }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.vercel.app";
   const matchingTools =
     hub.category === "all"
       ? CALCULATORS

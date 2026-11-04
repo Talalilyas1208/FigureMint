@@ -2,7 +2,7 @@ import React from "react";
 import { CALCULATORS } from "@/data/calculators";
 
 export function HomeJsonLd() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.vercel.app";
 
   const schemaGraph = {
     "@context": "https://schema.org",
