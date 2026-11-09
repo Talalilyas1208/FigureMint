@@ -22,7 +22,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 style={{ fontSize: "0.96rem", marginBottom: 10 }}>Calculators</h3>
+            <div className="footer-col-title" style={{ fontWeight: 700, fontSize: "0.96rem", marginBottom: 10, color: "var(--text-heading)" }}>
+              Calculators
+            </div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
               <li><Link href="/tiktok-shop-fee-calculator">TikTok Shop Fee Calculator</Link></li>
               <li><Link href="/etsy-fee-profit-calculator">Etsy Fee &amp; Profit Calculator</Link></li>
@@ -34,7 +36,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 style={{ fontSize: "0.96rem", marginBottom: 10 }}>Editorial &amp; Help</h3>
+            <div className="footer-col-title" style={{ fontWeight: 700, fontSize: "0.96rem", marginBottom: 10, color: "var(--text-heading)" }}>
+              Editorial &amp; Help
+            </div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
               <li><Link href="/profit-margin-calculators">All Profit Margin Calculators</Link></li>
               <li><Link href="/about">About &amp; Fee Methodology</Link></li>
@@ -44,7 +48,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 style={{ fontSize: "0.96rem", marginBottom: 10 }}>Legal &amp; Disclosures</h3>
+            <div className="footer-col-title" style={{ fontWeight: 700, fontSize: "0.96rem", marginBottom: 10, color: "var(--text-heading)" }}>
+              Legal &amp; Disclosures
+            </div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
               <li><Link href="/privacy-policy">Privacy &amp; Cookie Policy</Link></li>
               <li><Link href="/terms">Terms of Service</Link></li>

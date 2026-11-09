@@ -10,14 +10,24 @@ export function HomeJsonLd() {
       {
         "@type": "WebSite",
         name: "FigureMint",
-        alternateName: "FigureMint Profit & Fee Calculators",
+        alternateName: "FigureMint Net Profit & Fee Calculators",
         url: `${baseUrl}/`,
+        description: "Free 2026 fee, ROAS, and net profit calculators for online sellers, creators, and freelancers.",
+        publisher: {
+          "@type": "Organization",
+          name: "FigureMint",
+          url: `${baseUrl}/`,
+          logo: `${baseUrl}/icon.svg`,
+        },
       },
       {
         "@type": "Organization",
         name: "FigureMint",
         url: `${baseUrl}/`,
         logo: `${baseUrl}/icon.svg`,
+        sameAs: [
+          "https://figuremint.vercel.app",
+        ],
         contactPoint: {
           "@type": "ContactPoint",
           email: "editorial@figuremint.com",
@@ -27,10 +37,12 @@ export function HomeJsonLd() {
       {
         "@type": "ItemList",
         name: "2026 Online Seller, ROAS & Freelance Fee Calculators",
+        description: "Complete catalog of verified 2026 unit economics and fee calculators.",
         itemListElement: CALCULATORS.map((calc, idx) => ({
           "@type": "ListItem",
           position: idx + 1,
           name: calc.title,
+          description: calc.summary,
           url: `${baseUrl}/${calc.slug}`,
         })),
       },

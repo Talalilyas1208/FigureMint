@@ -10,7 +10,37 @@ import { ToolGridSection } from "@/components/engagement/ToolGridSection";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  title: "FigureMint — 2026 Seller, Creator & Freelance Net Profit Calculators",
+  description:
+    "Free 2026 fee, ROAS, and net profit calculators for TikTok Shop, Etsy, Shopify POD, Stripe vs. PayPal, and Upwork freelancers. Calculate true net margins instantly.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "FigureMint — 2026 Seller, Creator & Freelance Net Profit Calculators",
+    description: "Calculate true net margins after marketplace referral, affiliate, processing, and paid ad fees.",
+    url: "/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FigureMint — 2026 Net Profit Calculators",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FigureMint — 2026 Net Profit Calculators",
+    description: "Audit true net margin after marketplace referral, processing & ad fees.",
+    images: [
+      {
+        url: "/og-image.png",
+        alt: "FigureMint — 2026 Net Profit Calculators",
+      },
+    ],
+  },
 };
 
 export default function HomePage() {
@@ -69,9 +99,9 @@ export default function HomePage() {
               <div style={{ fontWeight: 700, color: "var(--text-heading)", marginBottom: 6 }}>
                 Quick Tip
               </div>
-              <p style={{ fontSize: "0.88rem", marginBottom: 0 }}>
-                Star your favorite calculators to save them locally, or press{" "}
-                <strong>⌘K</strong> on desktop to switch tools instantly.
+              <p style={{ fontSize: "0.86rem", marginBottom: 0 }}>
+                Press <kbd className="kbd-chip">⌘K</kbd> anywhere on FigureMint to instantly jump between
+                TikTok Shop, Etsy, Shopify, ROAS, Stripe, and Upwork calculators.
               </p>
             </AppCard>
           </div>

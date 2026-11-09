@@ -12,8 +12,10 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://figuremint.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "FigureMint — 2026 Seller, Creator & Freelance Net Profit Calculators",
     template: "%s | FigureMint",
@@ -27,24 +29,59 @@ export const metadata: Metadata = {
     "break even roas calculator",
     "stripe vs paypal fees",
     "freelance rate calculator",
+    "shopify print on demand calculator",
+    "net profit calculator 2026",
   ],
-  authors: [{ name: "FigureMint Editorial Team", url: "https://figuremint.vercel.app/about" }],
+  authors: [{ name: "FigureMint Editorial Team", url: `${siteUrl}/about` }],
   publisher: "FigureMint",
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "./",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://figuremint.vercel.app",
+    url: siteUrl,
     siteName: "FigureMint",
     title: "FigureMint — 2026 Seller, Creator & Freelance Net Profit Calculators",
     description: "Audit true net margin after marketplace referral, affiliate, processing & ad fees.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FigureMint — 2026 Online Seller, ROAS & Freelance Net Profit Calculators",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FigureMint — 2026 Net Profit Calculators",
     description: "Accurate fee schedules and net profit calculations for online sellers and freelancers.",
+    images: [
+      {
+        url: "/og-image.png",
+        alt: "FigureMint — 2026 Net Profit Calculators",
+      },
+    ],
   },
-  icons: { icon: "/icon.svg", apple: "/icon.svg" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/icon.svg",
+  },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "XpEkjxiaQnTZQKMhrXKwcFTJOoXX2mcE8cpgnfZZEpE",
   },
@@ -70,7 +107,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
           <ProfitBotWidget />
         </ThemeProvider>

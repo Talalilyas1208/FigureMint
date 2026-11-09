@@ -33,18 +33,66 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: hub.title,
       description: hub.description,
       alternates: { canonical: `/${hub.slug}` },
-      openGraph: { title: hub.title, description: hub.description, url: `/${hub.slug}`, type: "website" },
+      openGraph: {
+        title: hub.title,
+        description: hub.description,
+        url: `/${hub.slug}`,
+        type: "website",
+        images: [
+          {
+            url: "/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: `${hub.title} — FigureMint`,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: hub.title,
+        description: hub.description,
+        images: [
+          {
+            url: "/og-image.png",
+            alt: `${hub.title} — FigureMint`,
+          },
+        ],
+      },
     };
   }
 
   const calc = CALCULATORS.find((c) => c.slug === slug);
   if (!calc) return { title: "Calculator Not Found" };
   return {
-    title: calc.title,
+    title: `${calc.title} (2026)`,
     description: calc.summary,
     keywords: calc.keywords,
     alternates: { canonical: `/${calc.slug}` },
-    openGraph: { title: calc.title, description: calc.summary, url: `/${calc.slug}`, type: "article" },
+    openGraph: {
+      title: `${calc.title} — 2026 Fee & Profit Calculator`,
+      description: calc.summary,
+      url: `/${calc.slug}`,
+      type: "article",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${calc.title} — FigureMint`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${calc.title} (2026)`,
+      description: calc.summary,
+      images: [
+        {
+          url: "/og-image.png",
+          alt: `${calc.title} — FigureMint`,
+        },
+      ],
+    },
   };
 }
 
@@ -125,4 +173,3 @@ export default async function SeoSlugPage({ params }: PageProps) {
     </section>
   );
 }
-

@@ -2,17 +2,38 @@ import React from "react";
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AppCard } from "@/components/ui/AppCard";
+import { StaticPageJsonLd } from "@/components/seo/StaticPageJsonLd";
 
 export const metadata: Metadata = {
   title: "Financial, Tax & Marketplace Estimation Disclaimer",
   description:
     "Important financial, accounting, and marketplace fee estimation disclosures for FigureMint users.",
   alternates: { canonical: "/disclaimer" },
+  openGraph: {
+    title: "Financial & Estimation Disclaimer — FigureMint",
+    description: "Educational unit-economics modeling disclosures and independent publisher notices.",
+    url: "/disclaimer",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FigureMint Disclaimer" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Financial & Estimation Disclaimer — FigureMint",
+    description: "Educational unit-economics modeling disclosures and independent publisher notices.",
+    images: [{ url: "/og-image.png", alt: "FigureMint Disclaimer" }],
+  },
 };
 
 export default function DisclaimerPage() {
   return (
     <section className="section">
+      <StaticPageJsonLd
+        pageType="WebPage"
+        title="Financial, Tax & Estimation Disclaimer"
+        description="FigureMint provides educational unit-economics modeling—not certified accounting, tax, or legal advice."
+        path="/disclaimer"
+        breadcrumbLabel="Disclaimer"
+      />
       <div className="container prose-shell">
         <SectionHeading
           as="h1"
@@ -53,4 +74,3 @@ export default function DisclaimerPage() {
     </section>
   );
 }
-

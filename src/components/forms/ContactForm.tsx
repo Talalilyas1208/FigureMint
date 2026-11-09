@@ -54,7 +54,7 @@ export function ContactForm() {
         <AppBadge tone="emerald" icon={<CheckCircleOutlined />}>
           Received · Ref #{ticket}
         </AppBadge>
-        <h3 style={{ marginTop: 12 }}>Thank you for helping keep FigureMint accurate.</h3>
+        <h2 style={{ marginTop: 12, fontSize: "1.25rem" }}>Thank you for helping keep FigureMint accurate.</h2>
         <p style={{ marginBottom: 16 }}>
           Our editorial team reviews marketplace fee updates within 1–2 business days.
         </p>

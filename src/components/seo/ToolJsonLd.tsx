@@ -27,16 +27,25 @@ export function ToolJsonLd({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "SoftwareApplication",
+        "@type": ["SoftwareApplication", "WebApplication"],
         name: title,
+        alternateName: shortTitle,
         description: summary,
         url: pageUrl,
-        applicationCategory: "BusinessApplication",
-        operatingSystem: "Any",
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "All",
+        browserRequirements: "Requires JavaScript. Requires HTML5.",
         offers: {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "FigureMint",
+          url: `${baseUrl}/`,
+          logo: `${baseUrl}/icon.svg`,
         },
       },
       {

@@ -1,16 +1,37 @@
 import React from "react";
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { StaticPageJsonLd } from "@/components/seo/StaticPageJsonLd";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms of Service governing access to FigureMint calculators and guides.",
   alternates: { canonical: "/terms" },
+  openGraph: {
+    title: "Terms of Service — FigureMint",
+    description: "Terms of Service governing access to FigureMint calculators and guides.",
+    url: "/terms",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FigureMint Terms of Service" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service — FigureMint",
+    description: "Terms of Service governing access to FigureMint calculators and guides.",
+    images: [{ url: "/og-image.png", alt: "FigureMint Terms of Service" }],
+  },
 };
 
 export default function TermsPage() {
   return (
     <section className="section">
+      <StaticPageJsonLd
+        pageType="WebPage"
+        title="Terms of Service"
+        description="Please review these terms before using FigureMint calculators, APIs, and editorial guides."
+        path="/terms"
+        breadcrumbLabel="Terms of Service"
+      />
       <div className="container prose-shell">
         <SectionHeading
           as="h1"
@@ -60,4 +81,3 @@ export default function TermsPage() {
     </section>
   );
 }
-

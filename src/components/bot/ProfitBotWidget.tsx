@@ -122,7 +122,13 @@ export function ProfitBotWidget() {
         </section>
       )}
 
-      <button type="button" className="bot-fab" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
+      <button
+        type="button"
+        className="bot-fab"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-label="Toggle Profit Bot AI Assistant"
+      >
         <CalculatorOutlined />
         <span>{open ? "Hide Bot" : "Profit Bot"}</span>
       </button>

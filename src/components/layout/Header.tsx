@@ -40,7 +40,7 @@ export function Header() {
       <header className="site-header">
         <div className="container header-inner">
           <Link href="/" className="brand-anchor" aria-label="FigureMint home">
-            <span className="brand-monogram">F</span>
+            <span className="brand-monogram" aria-hidden="true">F</span>
             <span>FigureMint</span>
           </Link>
 
