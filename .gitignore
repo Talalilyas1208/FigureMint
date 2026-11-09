@@ -1,10 +1,26 @@
+# Environment files (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel
+
+# Security & Keys
+*.pem
+*.key
+*.cert
+*.pfx
+*.p12
+
+# Dependencies & Build
 /node_modules
 /.next/
 /out/
 .DS_Store
-*.pem
 npm-debug.log*
-.env*.local
+yarn-debug.log*
+yarn-error.log*
 next-env.d.ts
 *.tsbuildinfo
 __pycache__/
