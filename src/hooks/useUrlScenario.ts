@@ -64,6 +64,16 @@ export function useUrlScenario(fields: CalcFieldDef[]) {
     setValues((prev) => ({ ...prev, [key]: nextValue }));
   }, []);
 
+  const setMultipleFields = useCallback((next: Record<string, number | string>) => {
+    setValues((prev) => {
+      const merged = { ...prev };
+      for (const [k, v] of Object.entries(next)) {
+        if (v !== undefined) merged[k] = v;
+      }
+      return merged;
+    });
+  }, []);
+
   const buildShareUrl = useCallback((): string => {
     if (typeof window === "undefined") return "";
     const nextUrl = buildCleanRelativeUrl(window.location.pathname, fields, values);
@@ -71,5 +81,5 @@ export function useUrlScenario(fields: CalcFieldDef[]) {
     return `${window.location.origin}${nextUrl}`;
   }, [fields, values]);
 
-  return { values, setField, buildShareUrl };
+  return { values, setField, setMultipleFields, buildShareUrl };
 }

@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CALCULATORS } from "@/data/calculators";
+import { CALCULATORS, type CalculatorItem } from "@/data/calculators";
 import { SEO_CATEGORY_HUBS, getCategoryHubByCategory } from "@/data/seoCategories";
 import { TOOL_GUIDES } from "@/data/guides";
 import { AppBadge } from "@/components/ui/AppBadge";
@@ -23,6 +23,22 @@ export function generateStaticParams() {
     ...CALCULATORS.map((c) => ({ slug: c.slug })),
     ...SEO_CATEGORY_HUBS.map((h) => ({ slug: h.slug })),
   ];
+}
+
+function getRelatedCalculators(currentSlug: string): CalculatorItem[] {
+  const customMap: Record<string, string[]> = {
+    "tiktok-shop-fee-calculator": ["break-even-roas-calculator", "shopify-print-on-demand-calculator", "etsy-fee-profit-calculator"],
+    "etsy-fee-profit-calculator": ["shopify-print-on-demand-calculator", "break-even-roas-calculator", "stripe-vs-paypal-fee-calculator"],
+    "break-even-roas-calculator": ["tiktok-shop-fee-calculator", "shopify-print-on-demand-calculator", "etsy-fee-profit-calculator"],
+    "stripe-vs-paypal-fee-calculator": ["upwork-freelance-fee-calculator", "shopify-print-on-demand-calculator", "tiktok-shop-fee-calculator"],
+    "shopify-print-on-demand-calculator": ["etsy-fee-profit-calculator", "break-even-roas-calculator", "tiktok-shop-fee-calculator"],
+    "upwork-freelance-fee-calculator": ["stripe-vs-paypal-fee-calculator", "break-even-roas-calculator", "tiktok-shop-fee-calculator"],
+  };
+
+  const slugs = customMap[currentSlug] ?? [];
+  const found = slugs.map((s) => CALCULATORS.find((c) => c.slug === s)).filter(Boolean) as CalculatorItem[];
+  if (found.length >= 3) return found;
+  return CALCULATORS.filter((c) => c.slug !== currentSlug).slice(0, 3);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -108,7 +124,7 @@ export default async function SeoSlugPage({ params }: PageProps) {
   if (!calc || !guide) notFound();
 
   const parentHub = getCategoryHubByCategory(calc.category);
-  const related = CALCULATORS.filter((c) => c.slug !== calc.slug).slice(0, 2);
+  const related = getRelatedCalculators(calc.slug);
 
   return (
     <section className="section">
@@ -120,6 +136,7 @@ export default async function SeoSlugPage({ params }: PageProps) {
         categorySlug={parentHub.slug}
         categoryLabel={parentHub.navLabel}
         faqs={guide.faqs}
+        workedExample={guide.workedExample}
       />
       <div className="container">
         <nav aria-label="Breadcrumb" style={{ marginBottom: 14, fontSize: "0.9rem" }}>

@@ -1,9 +1,9 @@
-interface GuideSection {
+export interface GuideSection {
   heading: string;
   paragraphs: string[];
 }
 
-interface WorkedExample {
+export interface WorkedExample {
   title: string;
   steps: string[];
   takeaway: string;
@@ -25,4 +25,3 @@ export interface ToolGuideContent {
   workedExample: WorkedExample;
   faqs: FaqItem[];
 }
-
