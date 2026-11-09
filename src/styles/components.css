@@ -29,6 +29,8 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
@@ -130,7 +132,7 @@
 .data-table th, .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-warm); text-align: left; font-size: 0.94rem; }
 .data-table th { background: var(--bg-section); color: var(--text-heading); font-weight: 700; }
 
-/* Welcome Back Personalization Pill */
+/* Welcome Pill */
 .welcome-back-pill {
   display: inline-flex;
   align-items: center;
@@ -140,8 +142,10 @@
   color: var(--text-primary-deep);
   border-radius: var(--radius-pill);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 6px 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
   user-select: none;
 }
@@ -156,62 +160,7 @@
 .welcome-name-text {
   color: var(--text-heading);
   font-weight: 700;
-}
-
-.welcome-edit-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--text-primary-deep);
-  opacity: 0.7;
-  padding: 2px 6px;
-  font-size: 0.78rem;
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.15s ease, background-color 0.15s ease;
-}
-
-.welcome-edit-btn:hover {
-  opacity: 1;
-  background-color: rgba(16, 163, 127, 0.14);
-}
-
-.welcome-back-editing {
-  background-color: var(--bg-card);
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.18);
-}
-
-.welcome-name-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  color: var(--text-heading);
-  width: 110px;
-  padding: 0 4px;
-}
-
-.welcome-save-btn {
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  width: 22px;
-  height: 22px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-}
-
-.welcome-save-btn:hover {
-  background-color: var(--color-primary-hover);
+  white-space: nowrap;
 }
 
 /* Waving Hand Animation */

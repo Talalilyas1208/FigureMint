@@ -37,6 +37,15 @@ button, a, input, select, textarea {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
+}
+
+.search-label-desktop {
+  white-space: nowrap;
+}
+
+.theme-toggle-label {
+  white-space: nowrap;
 }
 
 .search-label-desktop,

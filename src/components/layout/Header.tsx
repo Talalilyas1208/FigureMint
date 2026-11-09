@@ -74,7 +74,7 @@ export function Header() {
           </nav>
 
           <div className="header-controls">
-            <WelcomeBack defaultName="Talal" variant="compact" className="desktop-only" />
+            <WelcomeBack variant="compact" className="desktop-only" />
             <AppButton
               variant="secondary"
               onClick={() => setSearchOpen(true)}

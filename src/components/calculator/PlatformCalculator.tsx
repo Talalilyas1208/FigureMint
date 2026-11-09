@@ -149,6 +149,7 @@ export function PlatformCalculator({ slug, title }: { slug: string; title: strin
                 fontWeight: 600,
                 color: "var(--text-heading)",
                 cursor: "pointer",
+                whiteSpace: "nowrap",
                 transition: "all 0.15s ease",
               }}
             >

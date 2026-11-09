@@ -74,6 +74,7 @@
   color: var(--text-body);
   font-size: 0.94rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 .nav-link:hover {
   background-color: var(--bg-section);

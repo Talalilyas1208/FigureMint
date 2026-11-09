@@ -52,7 +52,7 @@ export default function HomePage() {
         <div className="content-with-rail">
           <div>
             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, marginBottom: 14 }}>
-              <WelcomeBack defaultName="Talal" variant="hero" />
+              <WelcomeBack variant="hero" />
               <AppBadge tone="emerald" icon={<CheckCircleOutlined />}>
                 2026 Fee Schedules
               </AppBadge>
