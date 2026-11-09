@@ -8,6 +8,7 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import { QuickMarginPulse } from "@/components/engagement/QuickMarginPulse";
 import { ToolGridSection } from "@/components/engagement/ToolGridSection";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
+import { WelcomeBack } from "@/components/ui/WelcomeBack";
 
 export const metadata: Metadata = {
   title: "FigureMint — 2026 Seller, Creator & Freelance Net Profit Calculators",
@@ -50,7 +51,8 @@ export default function HomePage() {
       <div className="container">
         <div className="content-with-rail">
           <div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, marginBottom: 14 }}>
+              <WelcomeBack defaultName="Talal" variant="hero" />
               <AppBadge tone="emerald" icon={<CheckCircleOutlined />}>
                 2026 Fee Schedules
               </AppBadge>

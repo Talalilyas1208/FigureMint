@@ -53,10 +53,15 @@
 
 .desktop-nav { display: none; align-items: center; gap: 4px; }
 .mobile-only { display: inline-flex; }
+.desktop-only { display: none !important; }
 
 @media (min-width: 980px) {
   .desktop-nav { display: flex; }
   .mobile-only { display: none !important; }
+}
+
+@media (min-width: 1120px) {
+  .desktop-only { display: inline-flex !important; }
 }
 
 .nav-link {

@@ -7,6 +7,7 @@ import { CloseOutlined, MenuOutlined, ReadOutlined, SearchOutlined } from "@ant-
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toggleWarmPaper } from "@/store/uiSlice";
 import { AppButton } from "@/components/ui/AppButton";
+import { WelcomeBack } from "@/components/ui/WelcomeBack";
 import { SearchModal } from "./SearchModal";
 import { MobileNavDrawer } from "./MobileNavDrawer";
 import { NAV_LINKS, getActiveNavHref } from "./navConfig";
@@ -63,6 +64,7 @@ export function Header() {
           </nav>
 
           <div className="header-controls">
+            <WelcomeBack defaultName="Talal" variant="compact" className="desktop-only" />
             <AppButton
               variant="secondary"
               onClick={() => setSearchOpen(true)}
