@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { ProfitBotWidget } from "@/components/bot/ProfitBotWidget";
+import { ProfitBotLoader } from "@/components/bot/ProfitBotLoader";
 
 export const viewport: Viewport = {
   themeColor: "#FAFAF7",
@@ -109,7 +109,7 @@ export default function RootLayout({
           <Header />
           <main id="main-content">{children}</main>
           <Footer />
-          <ProfitBotWidget />
+          <ProfitBotLoader />
         </ThemeProvider>
       </body>
     </html>

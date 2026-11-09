@@ -6,11 +6,21 @@ import { usePathname } from "next/navigation";
 import { CloseOutlined, MenuOutlined, ReadOutlined, SearchOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toggleWarmPaper } from "@/store/uiSlice";
+import dynamic from "next/dynamic";
 import { AppButton } from "@/components/ui/AppButton";
 import { WelcomeBack } from "@/components/ui/WelcomeBack";
-import { SearchModal } from "./SearchModal";
-import { MobileNavDrawer } from "./MobileNavDrawer";
 import { NAV_LINKS, getActiveNavHref } from "./navConfig";
+
+// Lazy-load modal and drawer dialogs until requested
+const SearchModal = dynamic(
+  () => import("./SearchModal").then((mod) => mod.SearchModal),
+  { ssr: false }
+);
+
+const MobileNavDrawer = dynamic(
+  () => import("./MobileNavDrawer").then((mod) => mod.MobileNavDrawer),
+  { ssr: false }
+);
 
 export function Header() {
   const dispatch = useAppDispatch();

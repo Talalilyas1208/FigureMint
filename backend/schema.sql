@@ -1,6 +1,7 @@
--- FigureMint Dynamic Supabase PostgreSQL Schema & Row-Level Security (2026)
+-- FigureMint Dynamic Supabase PostgreSQL Schema & Performance Indexes (2026)
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
+-- 1. Calculators Catalog
 CREATE TABLE IF NOT EXISTS calculators_catalog (
   slug VARCHAR(64) PRIMARY KEY,
   title VARCHAR(120) NOT NULL,
@@ -17,6 +18,12 @@ CREATE TABLE IF NOT EXISTS calculators_catalog (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- Performance Indexes for Calculators Catalog
+CREATE INDEX IF NOT EXISTS idx_calculators_category ON calculators_catalog(category);
+CREATE INDEX IF NOT EXISTS idx_calculators_updated_at ON calculators_catalog(updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_calculators_keywords ON calculators_catalog USING GIN (keywords);
+
+-- 2. Saved Scenarios
 CREATE TABLE IF NOT EXISTS saved_scenarios (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   slug VARCHAR(64) NOT NULL,
@@ -29,6 +36,12 @@ CREATE TABLE IF NOT EXISTS saved_scenarios (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- Performance Indexes for Saved Scenarios
+CREATE INDEX IF NOT EXISTS idx_saved_scenarios_slug ON saved_scenarios(slug);
+CREATE INDEX IF NOT EXISTS idx_saved_scenarios_created_at ON saved_scenarios(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_saved_scenarios_slug_created ON saved_scenarios(slug, created_at DESC);
+
+-- 3. Margin Audit Logs
 CREATE TABLE IF NOT EXISTS margin_audit_logs (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   platform VARCHAR(64) NOT NULL,
@@ -39,6 +52,12 @@ CREATE TABLE IF NOT EXISTS margin_audit_logs (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- Performance Indexes for Audit Logs
+CREATE INDEX IF NOT EXISTS idx_margin_audit_platform ON margin_audit_logs(platform);
+CREATE INDEX IF NOT EXISTS idx_margin_audit_created_at ON margin_audit_logs(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_margin_audit_platform_created ON margin_audit_logs(platform, created_at DESC);
+
+-- 4. Contact Reports
 CREATE TABLE IF NOT EXISTS contact_reports (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   sender_name VARCHAR(80) NOT NULL,
@@ -49,6 +68,12 @@ CREATE TABLE IF NOT EXISTS contact_reports (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- Performance Indexes for Contact Reports
+CREATE INDEX IF NOT EXISTS idx_contact_reports_topic ON contact_reports(topic);
+CREATE INDEX IF NOT EXISTS idx_contact_reports_created_at ON contact_reports(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_contact_reports_sender_email ON contact_reports(sender_email);
+
+-- Row-Level Security Policies
 ALTER TABLE calculators_catalog ENABLE ROW LEVEL SECURITY;
 ALTER TABLE saved_scenarios ENABLE ROW LEVEL SECURITY;
 ALTER TABLE margin_audit_logs ENABLE ROW LEVEL SECURITY;
@@ -69,6 +94,7 @@ CREATE POLICY "Public insert audits" ON margin_audit_logs FOR INSERT WITH CHECK 
 DROP POLICY IF EXISTS "Public insert contact" ON contact_reports;
 CREATE POLICY "Public insert contact" ON contact_reports FOR INSERT WITH CHECK (true);
 
+-- Seed Initial Verified 2026 Rate Schedules
 INSERT INTO calculators_catalog (slug, title, short_title, category, badge, summary, default_price, default_cost, default_fee_pct, fixed_fee, formula_note, keywords)
 VALUES
   ('tiktok-shop-fee-calculator', 'TikTok Shop Fee & Net Profit Calculator', 'TikTok Shop Fee Calculator', 'ecommerce', 'Popular', 'Audit 2026 TikTok Shop referral fees, creator affiliate commissions, shipping subsidies & net profit per order.', 42, 12, 18, 0.30, 'Net = Sale Price − COGS − (Referral % + Affiliate %) − Shipping', ARRAY['tiktok shop fee calculator','tiktok profit','affiliate commission','referral fee','margin']),

@@ -25,12 +25,18 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ ok: false, error: `Calculator '${slug}' not found.` }, { status: 404 });
   }
 
-  return NextResponse.json({
-    ok: true,
-    calculator: calc,
-    schema: engine.fields,
-    version: "2026.2",
-    apiEndpoint: `/api/calculate`,
-  });
+  return NextResponse.json(
+    {
+      ok: true,
+      calculator: calc,
+      schema: engine.fields,
+      version: "2026.2",
+      apiEndpoint: `/api/calculate`,
+    },
+    {
+      headers: {
+        "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800",
+      },
+    }
+  );
 }
-

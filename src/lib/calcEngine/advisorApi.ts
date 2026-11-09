@@ -6,8 +6,21 @@ interface AdvisorRequest {
   fixedFee?: number;
 }
 
+// In-memory client cache to prevent duplicate AI calls
+const clientAdvisorCache = new Map<string, string>();
+
+function getAdvisorKey(p: AdvisorRequest): string {
+  return `${p.platform}_${p.salePrice.toFixed(2)}_${p.productCost.toFixed(2)}_${p.feePercent.toFixed(2)}_${p.fixedFee ?? 0}`;
+}
+
 export async function fetchMarginAdvisor(payload: AdvisorRequest): Promise<string> {
   const fallback = "Test a 5%–10% higher offer price or 2-unit bundle to compare net margin.";
+  const key = getAdvisorKey(payload);
+  const cached = clientAdvisorCache.get(key);
+  if (cached) {
+    return cached;
+  }
+
   try {
     const res = await fetch("/api/ai-advisor", {
       method: "POST",
@@ -22,7 +35,14 @@ export async function fetchMarginAdvisor(payload: AdvisorRequest): Promise<strin
     });
     if (!res.ok) return fallback;
     const data = await res.json();
-    return data.advice ?? data.error ?? fallback;
+    const result = data.advice ?? data.error ?? fallback;
+
+    if (clientAdvisorCache.size > 200) {
+      const first = clientAdvisorCache.keys().next().value;
+      if (first) clientAdvisorCache.delete(first);
+    }
+    clientAdvisorCache.set(key, result);
+    return result;
   } catch {
     return fallback;
   }

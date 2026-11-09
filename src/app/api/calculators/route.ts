@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { checkRateLimit, extractClientIp } from "@/lib/security/rateLimit";
 import { fetchDynamicCalculators } from "@/lib/db/supabaseStore";
 
+// Server-side in-memory cache for catalog
+let cachedCatalogData: object | null = null;
+let lastCatalogFetchTime = 0;
+const CATALOG_CACHE_TTL = 30 * 60 * 1000; // 30 minutes
+
 export async function GET(req: NextRequest) {
   const ip = extractClientIp(req.headers);
   const limit = checkRateLimit(`catalog:${ip}`, 60, 60_000);
@@ -12,6 +17,16 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  // Return from in-memory cache if fresh
+  if (cachedCatalogData && Date.now() - lastCatalogFetchTime < CATALOG_CACHE_TTL) {
+    return NextResponse.json(cachedCatalogData, {
+      headers: {
+        "X-Cache": "HIT",
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      },
+    });
+  }
+
   const expressBase = process.env.EXPRESS_API_URL;
   if (expressBase) {
     try {
@@ -20,7 +35,14 @@ export async function GET(req: NextRequest) {
       });
       if (upstream.ok) {
         const json = await upstream.json();
-        return NextResponse.json(json);
+        cachedCatalogData = json;
+        lastCatalogFetchTime = Date.now();
+        return NextResponse.json(json, {
+          headers: {
+            "X-Cache": "MISS",
+            "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        });
       }
     } catch {
       /* Fall back to direct Supabase / PostgreSQL repository */
@@ -28,6 +50,13 @@ export async function GET(req: NextRequest) {
   }
 
   const catalog = await fetchDynamicCalculators();
-  return NextResponse.json(catalog);
-}
+  cachedCatalogData = catalog;
+  lastCatalogFetchTime = Date.now();
 
+  return NextResponse.json(catalog, {
+    headers: {
+      "X-Cache": "MISS",
+      "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+    },
+  });
+}
