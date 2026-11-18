@@ -4,6 +4,9 @@ const LEGACY_SLUG_MAP = [
   ["break-even-roas", "break-even-roas-calculator"],
   ["stripe-vs-paypal-payout", "stripe-vs-paypal-fee-calculator"],
   ["shopify-pod-margin", "shopify-print-on-demand-calculator"],
+  ["print-on-demand-calculator", "shopify-print-on-demand-calculator"],
+  ["print-on-demand-profit-calculator", "shopify-print-on-demand-calculator"],
+  ["pod-profit-calculator", "shopify-print-on-demand-calculator"],
   ["freelance-upwork-net-rate", "upwork-freelance-fee-calculator"],
 ];
 

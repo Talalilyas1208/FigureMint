@@ -30,7 +30,7 @@ export function Footer() {
               <li><Link href="/etsy-fee-profit-calculator">Etsy Fee &amp; Profit Calculator</Link></li>
               <li><Link href="/break-even-roas-calculator">Break-Even ROAS Calculator</Link></li>
               <li><Link href="/stripe-vs-paypal-fee-calculator">Stripe vs. PayPal Fee Calculator</Link></li>
-              <li><Link href="/shopify-print-on-demand-calculator">Shopify Print-on-Demand Calculator</Link></li>
+              <li><Link href="/shopify-print-on-demand-calculator">Print on Demand Profit Calculator</Link></li>
               <li><Link href="/upwork-freelance-fee-calculator">Upwork &amp; Freelance Fee Calculator</Link></li>
             </ul>
           </div>
